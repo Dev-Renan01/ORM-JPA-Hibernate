@@ -12,20 +12,35 @@ public class TesteHibernate {
 		HibernateUtil.getEntityManager();
 	}
 
-	@Test
+	//@Test
 	public void testarSalvar() {
+		
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 
 		UsuarioPessoa pessoa = new UsuarioPessoa();
 
-		pessoa.setNome("Suany Severina");
-		pessoa.setSobrenome("da Silva");
-		pessoa.setEmail("susu@gmail.com");
-		pessoa.setIdade(19);
-		pessoa.setLogin("susu");
-		pessoa.setSenha("7777");
+		pessoa.setNome("Bruno Oliveira");
+		pessoa.setSobrenome("Campos");
+		pessoa.setEmail("br@gmail.com");
+		pessoa.setIdade(32);
+		pessoa.setLogin("bruno");
+		pessoa.setSenha("1122");
 
 		daoGeneric.salvar(pessoa);
+		
+		System.out.println(pessoa + "Salvo(a) com sucesso!");
+	}
+	
+	@Test
+	public void testeBuscar() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		UsuarioPessoa pessoa = new UsuarioPessoa();
+		pessoa.setId(52L);
+		 
+		pessoa = daoGeneric.pesquisar(pessoa);
+		
+		System.out.println(pessoa);
 	}
 
 }

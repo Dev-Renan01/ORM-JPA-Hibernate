@@ -11,12 +11,21 @@ public class DaoGeneric<E> {
 	
 	public void salvar(E entidade) {
 		
-		EntityTransaction transacao = entityManager.getTransaction(); // niciar uma transação / processo
+		EntityTransaction transacao = entityManager.getTransaction(); // Inicia uma transação / processo
 		transacao.begin();
 		
 		entityManager.persist(entidade); // Persistir / salvar
 		
 		transacao.commit(); // Salvar no banco de dados
+	}
+	
+	public E pesquisar(E entidade) {
+		 
+		Object id = HibernateUtil.getPrimaryKey(entidade);
+		
+		E e =  (E) entityManager.find(entidade.getClass(), id);// Buscar
+		
+		return e;
 	}
 	
 }

@@ -1,6 +1,5 @@
 package model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,10 +10,9 @@ import jakarta.persistence.Table;
 @Table(name = "usuario_pessoa")
 public class UsuarioPessoa {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(nullable = false, length = 100)
 	private String nome;
 	private String sobrenome;
 	private String email;
@@ -80,6 +78,12 @@ public class UsuarioPessoa {
 
 	public void setIdade(int idade) {
 		this.idade = idade;
+	}
+
+	@Override
+	public String toString() {
+		return "UsuarioPessoa [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", email=" + email
+				+ ", login=" + login + ", senha=" + senha + ", idade=" + idade + "]";
 	}
 	
 
