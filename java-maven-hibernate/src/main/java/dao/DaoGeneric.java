@@ -6,6 +6,7 @@ import java_maven_hibernate.java_maven_hibernate.HibernateUtil;
 
 public class DaoGeneric<E> {
 
+	// Gerenciar entidades e permitir interagir com o banco de dados 
 	private EntityManager entityManager = HibernateUtil.getEntityManager();
 	
 	
@@ -14,13 +15,27 @@ public class DaoGeneric<E> {
 		EntityTransaction transacao = entityManager.getTransaction(); // Inicia uma transação / processo
 		transacao.begin();
 		
-		entityManager.persist(entidade); // Persistir / salvar
-		
+		entityManager.persist(entidade); // Persistir / salvar	
 		transacao.commit(); // Salvar no banco de dados
+	} 
+	
+	
+	public E updateMerge(E entidade) { // Salva ou atualiza
+		EntityTransaction transacao = entityManager.getTransaction();
+		transacao.begin();
+		
+		E entidadeSalva = entityManager.merge(entidade);
+		transacao.commit();
+		
+		return entidadeSalva;
+		
 	}
 	
+	
+	
+	
 	public E pesquisar(E entidade) {
-		 
+				
 		Object id = HibernateUtil.getPrimaryKey(entidade);
 		
 		E e =  (E) entityManager.find(entidade.getClass(), id);// Buscar

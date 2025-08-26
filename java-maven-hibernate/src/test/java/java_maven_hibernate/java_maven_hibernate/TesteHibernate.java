@@ -9,6 +9,7 @@ public class TesteHibernate {
 
 	//@Test
 	public void testeHibernateUtil() {
+		
 		HibernateUtil.getEntityManager();
 	}
 
@@ -31,7 +32,7 @@ public class TesteHibernate {
 		System.out.println(pessoa + "Salvo(a) com sucesso!");
 	}
 	
-	@Test
+	//@Test
 	public void testeBuscar() {
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 		
@@ -41,6 +42,27 @@ public class TesteHibernate {
 		pessoa = daoGeneric.pesquisar(pessoa);
 		
 		System.out.println(pessoa);
+	}
+	
+	@Test
+	public void testeUpdate() { // buscar usuário e mostrar as atualizações / antes e depois
+		
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		UsuarioPessoa pessoa = new UsuarioPessoa();
+		
+		pessoa.setId(2L);
+		pessoa = daoGeneric.pesquisar(pessoa);
+		System.out.println("Usuário atual -> " + pessoa);
+
+		pessoa.setNome("suany");
+		pessoa.setIdade(25);
+		pessoa.setSenha("2222");
+		
+		pessoa = daoGeneric.updateMerge(pessoa);
+		 
+		 System.out.println("Atualizações -> " + pessoa);
+		
 	}
 
 }
