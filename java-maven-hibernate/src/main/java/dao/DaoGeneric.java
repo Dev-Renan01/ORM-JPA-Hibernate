@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import java_maven_hibernate.java_maven_hibernate.HibernateUtil;
@@ -21,6 +23,7 @@ public class DaoGeneric<E> {
 	
 	
 	public E updateMerge(E entidade) { // Salva ou atualiza
+		
 		EntityTransaction transacao = entityManager.getTransaction();
 		transacao.begin();
 		
@@ -52,5 +55,18 @@ public class DaoGeneric<E> {
 		entityManager.createNativeQuery("delete from usuario_pessoa  where id =" + id).executeUpdate(); // Mandar um SQL direto para o banco de dados
 		
 		transacao.commit();
+	}
+	
+	
+	public List<E> listar(Class<E> entidade){
+		
+		EntityTransaction transacao = entityManager.getTransaction();
+		transacao.begin();
+		
+		List<E> listar = entityManager.createQuery("from " + entidade.getName()).getResultList();
+		
+		transacao.commit();
+		
+		return listar;
 	}
 }
