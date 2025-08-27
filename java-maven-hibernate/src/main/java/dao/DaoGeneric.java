@@ -32,15 +32,25 @@ public class DaoGeneric<E> {
 	}
 	
 	
-	
-	
 	public E pesquisar(E entidade) {
 				
-		Object id = HibernateUtil.getPrimaryKey(entidade);
+		Object id = HibernateUtil.getPrimaryKey(entidade); // Indantificar o id
 		
 		E e =  (E) entityManager.find(entidade.getClass(), id);// Buscar
 		
 		return e;
 	}
 	
+	
+	public void deletarPorId(E entidade) {
+		 
+		Object id = HibernateUtil.getPrimaryKey(entidade); // Indantificar o id
+		
+		EntityTransaction transacao = entityManager.getTransaction();
+		transacao.begin();
+		
+		entityManager.createNativeQuery("delete from usuario_pessoa  where id =" + id).executeUpdate(); // Mandar um SQL direto para o banco de dados
+		
+		transacao.commit();
+	}
 }

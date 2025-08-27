@@ -44,7 +44,7 @@ public class TesteHibernate {
 		System.out.println(pessoa);
 	}
 	
-	@Test
+	//@Test
 	public void testeUpdate() { // buscar usuário e mostrar as atualizações / antes e depois
 		
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
@@ -64,5 +64,20 @@ public class TesteHibernate {
 		 System.out.println("Atualizações -> " + pessoa);
 		
 	}
-
+	
+	
+	@Test
+	public void testeDelete() {
+		
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		UsuarioPessoa pessoa = new UsuarioPessoa();
+		
+		pessoa.setId(52L);
+		pessoa = daoGeneric.pesquisar(pessoa);
+		System.out.println(pessoa);
+			
+		daoGeneric.deletarPorId(pessoa);
+		System.out.println("Deletado com sucesso!");
+	}
 }
