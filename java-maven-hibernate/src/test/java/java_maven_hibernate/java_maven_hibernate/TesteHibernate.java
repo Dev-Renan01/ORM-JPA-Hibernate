@@ -80,7 +80,7 @@ public class TesteHibernate {
 		System.out.println("Deletado com sucesso!");
 	}
 
-	@Test
+	// @Test
 	public void testeListar() {
 
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
@@ -91,7 +91,19 @@ public class TesteHibernate {
 			System.out.println(pessoa);
 			System.out.println("---------------------------------------------------");
 		}
+	}
 
+	@Test
+	public void testeQueryList() {
+
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		List<UsuarioPessoa> list = daoGeneric.getEntityManager().createQuery("from UsuarioPessoa").getResultList();
+
+		for(UsuarioPessoa pessoa : list) {
+			System.out.println(pessoa);
+			
+		}
 	}
 
 }

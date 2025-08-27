@@ -69,4 +69,9 @@ public class DaoGeneric<E> {
 		
 		return listar;
 	}
+	
+	
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
 }
