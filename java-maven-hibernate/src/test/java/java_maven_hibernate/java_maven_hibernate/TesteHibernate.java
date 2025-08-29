@@ -13,19 +13,19 @@ public class TesteHibernate {
 		HibernateUtil.getEntityManager();
 	}
 
-	// @Test
+	 //@Test
 	public void testarSalvar() {
 
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 
 		UsuarioPessoa pessoa = new UsuarioPessoa();
 
-		pessoa.setNome("Bruno Oliveira");
-		pessoa.setSobrenome("Campos");
-		pessoa.setEmail("br@gmail.com");
-		pessoa.setIdade(32);
-		pessoa.setLogin("bruno");
-		pessoa.setSenha("1122");
+		pessoa.setNome("Maria Ilidiana");
+		pessoa.setSobrenome("lili");
+		pessoa.setEmail("lili@gmail.com");
+		pessoa.setIdade(34);
+		pessoa.setLogin("lilili");
+		pessoa.setSenha("1234");
 
 		daoGeneric.salvar(pessoa);
 
@@ -80,7 +80,7 @@ public class TesteHibernate {
 		System.out.println("Deletado com sucesso!");
 	}
 
-	// @Test
+	//@Test
 	public void testeListar() {
 
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
@@ -93,7 +93,7 @@ public class TesteHibernate {
 		}
 	}
 
-	@Test
+	//@Test
 	public void testeQueryList() {
 
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
@@ -105,5 +105,30 @@ public class TesteHibernate {
 			
 		}
 	}
+	
+	@Test
+	public void testeQueryListMaxResult() {
+		
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		List<UsuarioPessoa> list = daoGeneric.getEntityManager().createQuery("from UsuarioPessoa order by nome")
+				.setMaxResults(4)
+				.getResultList();
+		
+		for(UsuarioPessoa p : list) {
+			
+			System.out.println(p);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
