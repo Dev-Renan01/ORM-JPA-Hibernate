@@ -1,13 +1,22 @@
 package model;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuario_pessoa")
+
+@NamedQueries({
+	
+	@NamedQuery(name = "UsuarioPessoa.todos", query = "select u from UsuarioPessoa u")
+	
+})
 public class UsuarioPessoa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

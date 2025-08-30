@@ -133,4 +133,28 @@ public class TesteHibernate {
 			System.out.println(p);
 		}
 	}
+	
+	@Test
+	public void testeQuerySomaIdade() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		Long somaIdade = (Long) daoGeneric.getEntityManager()
+				.createQuery("select sum(u.idade) from UsuarioPessoa u ")
+				.getSingleResult();
+		
+		System.out.println("A soma de todas as idades é --> " + somaIdade);
+	}
+	
+	@Test
+	public void testNamedQuery01() {
+		
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		List<UsuarioPessoa> list = daoGeneric.getEntityManager().createNamedQuery("UsuarioPessoa.todos").getResultList();
+		
+		for(UsuarioPessoa p : list) {
+			System.out.println(p);
+			System.out.println("--------------------------------------------");
+		}
+	}
 }
