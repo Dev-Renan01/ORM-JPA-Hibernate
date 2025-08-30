@@ -7,13 +7,12 @@ import model.UsuarioPessoa;
 
 public class TesteHibernate {
 
-	// @Test
+	@Test
 	public void testeHibernateUtil() {
-
 		HibernateUtil.getEntityManager();
 	}
 
-	 //@Test
+	@Test
 	public void testarSalvar() {
 
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
@@ -32,7 +31,7 @@ public class TesteHibernate {
 		System.out.println(pessoa + "Salvo(a) com sucesso!");
 	}
 
-	// @Test
+	@Test
 	public void testeBuscar() {
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 
@@ -44,7 +43,7 @@ public class TesteHibernate {
 		System.out.println(pessoa);
 	}
 
-	// @Test
+	@Test
 	public void testeUpdate() { // buscar usuário e mostrar as atualizações / antes e depois
 
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
@@ -65,7 +64,7 @@ public class TesteHibernate {
 
 	}
 
-	// @Test
+	@Test
 	public void testeDelete() {
 
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
@@ -80,7 +79,7 @@ public class TesteHibernate {
 		System.out.println("Deletado com sucesso!");
 	}
 
-	//@Test
+	@Test
 	public void testeListar() {
 
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
@@ -93,7 +92,7 @@ public class TesteHibernate {
 		}
 	}
 
-	//@Test
+	@Test
 	public void testeQueryList() {
 
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
@@ -116,19 +115,22 @@ public class TesteHibernate {
 				.getResultList();
 		
 		for(UsuarioPessoa p : list) {
-			
 			System.out.println(p);
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
+	@Test
+	public void testeQueryListParameter() {
+		
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		List<UsuarioPessoa> list = daoGeneric.
+				getEntityManager()
+				.createQuery("from UsuarioPessoa where nome = :nome")
+				.setParameter("nome", "suany").getResultList();
+		
+		for(UsuarioPessoa p : list) {
+			System.out.println(p);
+		}
+	}
 }
