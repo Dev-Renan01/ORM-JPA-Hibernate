@@ -5,7 +5,7 @@
 	<persistence-unit name="java-maven-hibernate">
     
     <class>model.UsuarioPessoa</class>
-    
+    <class>model.TelefoneUser</class>
     <properties>
     
         <!-- Dados de conexão com o banco -->

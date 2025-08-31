@@ -1,12 +1,15 @@
 package model;
 
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -29,8 +32,19 @@ public class UsuarioPessoa {
 	private String senha;
 	private int idade;
 	
+	@OneToMany(mappedBy = "usuarioPessoa") //Um para muitos / esses telefones mapeados para usuarioPessoa
+	private List<TelefoneUser> telefoneUsers;
+	
 	public UsuarioPessoa() {
 		
+	}
+
+	public List<TelefoneUser> getTelefoneUsers() {
+		return telefoneUsers;
+	}
+
+	public void setTelefoneUsers(List<TelefoneUser> telefoneUsers) {
+		this.telefoneUsers = telefoneUsers;
 	}
 
 	public long getId() {
