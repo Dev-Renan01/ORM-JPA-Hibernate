@@ -3,6 +3,7 @@ package java_maven_hibernate.java_maven_hibernate;
 import java.util.List;
 import org.junit.Test;
 import dao.DaoGeneric;
+import model.TelefoneUser;
 import model.UsuarioPessoa;
 
 public class TesteHibernate {
@@ -157,4 +158,23 @@ public class TesteHibernate {
 			System.out.println("--------------------------------------------");
 		}
 	}
+	
+	@Test
+	public void testeGravarTelefone() {
+		
+		DaoGeneric daoGeneric = new DaoGeneric();
+		UsuarioPessoa pessoa = new UsuarioPessoa();
+		TelefoneUser telefoneUser = new TelefoneUser();
+
+		pessoa.setId(2L);
+		daoGeneric.pesquisar(pessoa);
+		
+		telefoneUser.setNumeroCel("123456789");
+		telefoneUser.setTipo("Celular");
+		telefoneUser.setUsuarioPessoa(pessoa);
+		
+		daoGeneric.salvar(telefoneUser);
+		
+	}
+	
 }
